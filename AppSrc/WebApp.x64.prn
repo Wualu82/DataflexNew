@@ -1,5 +1,5 @@
 Compiling Program: C:\DataFlex Projects\FutbolWebApp\AppSrc\WebApp.src
-Memory Available: 34149519360
+Memory Available: 35737530368
 1>Use AllWebAppClasses.pkg
 Using pre-compiled package ALLWEBAPPCLASSES.PKG
 Including file: AllWebAppClasses.x64.pkd    (C:\Program Files\DataFlex 25.0\Pkg\AllWebAppClasses.x64.pkd)
@@ -1488,7 +1488,7 @@ Including file: Dashboard.wo    (C:\DataFlex Projects\FutbolWebApp\AppSrc\Dashbo
 37369>>>            Set psCSSClass to "TilesGroup"
 37370>>>    
 37370>>>            Object oWelcomeTile is a cWebHtmlBox
-37372>>>                Set piColumnSpan to 6
+37372>>>                Set piColumnSpan to 12
 37373>>>                Set psCSSClass to "Tile Light"
 37374>>>                Set psHtml to '<div Class="WebCon_Sizer"><div class="Tile_Title">Welcome</div><div Class="Tile_Subtitle">--</div></div>'
 37375>>>    
@@ -3539,7 +3539,7 @@ Including file: SelectLiga.wo    (C:\DataFlex Projects\FutbolWebApp\AppSrc\Selec
 39082>Send StartWebApp of oWebApp
 39083>
 Summary
-Memory Available: 34132025344
+Memory Available: 35718438912
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 25607
