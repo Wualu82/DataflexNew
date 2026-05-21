@@ -115,7 +115,7 @@ Object oDashboard is a cWebView
                 Set psCSSClass to "Tile LightAlternate"
                 Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div Class="Tile_Title">Equipo</div><div class="Tile_Subtitle">Lista</div></div>'
                                 
-                WebRegisterPath ntNavigateForwardCustom oSelectEquipo
+                WebRegisterPath ntNavigateForward oSelectEquipo
                 
                 Procedure OnClick String sId String sParam
                     Send NavigatePath
