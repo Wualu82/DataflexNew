@@ -8,6 +8,7 @@ Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
 Use cWebButton.pkg
+Use SelectEquipo.wo
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
@@ -127,6 +128,22 @@ End_Object
             End_Procedure
 
         End_Object 
+        
+        Object oLigaEquiposBtn is a cWebMenuItem
+
+            Set psCaption to "Equipos Liga"
+
+            
+            Procedure OnClick
+                
+                Showln "Volviendo a SelectEquipo como parent-child"
+
+                Send NavigateClose Self
+                
+            End_Procedure
+
+        End_Object
+        
     End_Object 
 
     Procedure SetActionButtons
