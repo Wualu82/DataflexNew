@@ -162,6 +162,7 @@ Object oSelectLiga is a cWebView
                 Case Break
 
             Case (NavigateData.eNavigateType = nfFromChild)
+                WebSet pbRender of oNewButton to False
                 // If from child, this is a probably a parent lookup from a Zoom
                 Case Break
 
