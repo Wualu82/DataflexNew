@@ -136,7 +136,7 @@ End_Object
             
             Procedure OnClick
                 
-                Showln "Volviendo a SelectEquipo como parent-child"
+                
 
                 Send NavigateClose Self
                 
