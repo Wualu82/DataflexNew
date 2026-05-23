@@ -7,6 +7,7 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use SelectEquipo.wo
 
 Use cligaDataDictionary.dd
 
@@ -113,6 +114,19 @@ Object oZoomLiga is a cWebView
             End_Procedure
 
         End_Object 
+        
+        Object oEquiposLigaBtn is a cWebMenuItem
+            Set psCaption to "Ver Equipos"
+            Set psCSSClass to "WebIcon_Group"
+    
+            WebRegisterPath ntNavigateForward oSelectEquipo
+
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+
+End_Object
+        
     End_Object 
 
     Procedure SetActionButtons
