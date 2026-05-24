@@ -15,3 +15,5 @@ Creado el botón "ver equipos" en ZoomLiga para ver los equipos de esa misma lig
 
 
 Creada la lista de equipos entro del ZoomLiga.
+
+Creado boton "ver posiciones" en ZoomJugador que nos muestra el SelectPosicion. Ambos estan relacionados con una tabla intermedia JugadorPosicion
