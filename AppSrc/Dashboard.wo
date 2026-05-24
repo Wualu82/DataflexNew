@@ -10,6 +10,7 @@ Use cWebMenuItem.pkg
 Use cWebLabel.pkg
 Use cWebList.pkg
 Use cWebColumn.pkg
+Use ZoomLiga.wo
 
 Object oDashboard is a cWebView
 
@@ -135,6 +136,24 @@ Object oDashboard is a cWebView
                     Send NavigatePath
                 End_Procedure
                 
+            End_Object
+            
+            Object oNuevaLiga_Tile is a cWebHtmlBox
+                Set pbServerOnClick to True
+                Set piColumnSpan to 6
+                Set psCSSClass to "Tile Dark"
+                Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div Class="Tile_Title">Liga</div><div class="Tile_Subtitle">Zoom</div></div>'
+    
+                WebRegisterPath ntNavigateForward oZoomLiga
+
+                Procedure OnClick String sId String sParam
+                    Send NavigatePath
+                End_Procedure
+
+                Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+                     Move True to NavigateData.bNewRecord
+                End_Procedure
+
             End_Object
             
         End_Object

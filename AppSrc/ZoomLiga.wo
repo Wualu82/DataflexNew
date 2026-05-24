@@ -200,6 +200,7 @@ End_Object
         Integer iLigaID
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
+                WebSet pbRender of oEquiposList to False
                 // If from main, this is a propbably a main file Select to Zoom.
                 Case Break
 
@@ -212,7 +213,7 @@ End_Object
                 Case Break
 
             Case Else // must be nfUndefined
-
+                WebSet pbRender of oEquiposList to True
         Case End
                 
         Get Field_Current_Value of oliga_DD Field liga.ID to iLigaID

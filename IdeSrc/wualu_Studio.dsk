@@ -7,7 +7,7 @@ GroupCount=1
 HorizontalGroups=1
 [TabGroup0]
 GroupSize=40
-SelectedTab=5
+SelectedTab=8
 [Window0]
 Filename=Workspace Dashboard
 ViewType=101
@@ -25,7 +25,7 @@ Left=0
 Bottom=873
 Right=1797
 CursorLine=117
-CursorColumn=49
+CursorColumn=32
 TabIndex=1
 TabGroup=0
 [Window2]
@@ -51,39 +51,6 @@ CursorColumn=48
 TabIndex=3
 TabGroup=0
 [Window4]
-Filename=C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEntrenador.wo
-ViewType=1
-Top=26
-Left=0
-Bottom=873
-Right=1797
-CursorLine=14
-CursorColumn=36
-TabIndex=6
-TabGroup=0
-[Window5]
-Filename=C:\DataFlex Projects\FutbolWebApp\AppSrc\SelectEntrenador.wo
-ViewType=1
-Top=26
-Left=0
-Bottom=873
-Right=1797
-CursorLine=0
-CursorColumn=0
-TabIndex=7
-TabGroup=0
-[Window6]
-Filename=C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomLiga.wo
-ViewType=1
-Top=26
-Left=0
-Bottom=873
-Right=1797
-CursorLine=99
-CursorColumn=0
-TabIndex=8
-TabGroup=0
-[Window7]
 Filename=C:\DataFlex Projects\FutbolWebApp\AppSrc\SelectEquipo.wo
 ViewType=1
 Top=26
@@ -94,14 +61,47 @@ CursorLine=5
 CursorColumn=16
 TabIndex=4
 TabGroup=0
-[Window8]
+[Window5]
 Filename=C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEquipo.wo
 ViewType=1
 Top=26
 Left=0
 Bottom=873
 Right=1797
-CursorLine=75
-CursorColumn=47
+CursorLine=73
+CursorColumn=0
 TabIndex=5
+TabGroup=0
+[Window6]
+Filename=C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEntrenador.wo
+ViewType=1
+Top=26
+Left=0
+Bottom=873
+Right=1797
+CursorLine=14
+CursorColumn=36
+TabIndex=6
+TabGroup=0
+[Window7]
+Filename=C:\DataFlex Projects\FutbolWebApp\AppSrc\SelectEntrenador.wo
+ViewType=1
+Top=26
+Left=0
+Bottom=873
+Right=1797
+CursorLine=0
+CursorColumn=0
+TabIndex=7
+TabGroup=0
+[Window8]
+Filename=C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomLiga.wo
+ViewType=1
+Top=26
+Left=0
+Bottom=873
+Right=1797
+CursorLine=12
+CursorColumn=18
+TabIndex=8
 TabGroup=0
