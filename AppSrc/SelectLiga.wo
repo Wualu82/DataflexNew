@@ -9,6 +9,7 @@ Use cWebMenuItem.pkg
 Use cWebColumnButton.pkg
 Use cWebColumn.pkg
 Use ZoomLiga.wo
+Use SelectEquipo.wo
 
 Use cligaDataDictionary.dd
 
@@ -87,7 +88,7 @@ Object oSelectLiga is a cWebView
         End_Object 
 
 // ToDo: Fill in the from-parent child Select view object name for navigate forward
-//        WebRegisterPath ntNavigateForward oSelectView
+          WebRegisterPath ntNavigateForward oSelectEquipo
 
         Procedure OnRowClick String sRowId
             tWebNavigateData NavigateData
@@ -95,8 +96,8 @@ Object oSelectLiga is a cWebView
 
             Case Begin
                 Case (NavigateData.eNavigateType = nfFromParent)
-// ToDo: Fill in the from-parent child Select view object name for navigate forward
-Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not yet defined"
+                Send NavigatePath
+            Send NavigatePath
 //                    Send NavigateForward of oSelectView Self
                     Case Break
 
@@ -110,7 +111,7 @@ Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not y
 
                 Case Else // must be nfUndefined
 // ToDo: Fill in the from-parent child Select view object name for navigate forward
-Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not yet defined"
+                Send NavigatePath
 //                    Send NavigateForward of oSelectView Self
 
             Case End
@@ -161,6 +162,7 @@ Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not y
                 Case Break
 
             Case (NavigateData.eNavigateType = nfFromChild)
+                WebSet pbRender of oNewButton to False
                 // If from child, this is a probably a parent lookup from a Zoom
                 Case Break
 

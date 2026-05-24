@@ -7,6 +7,8 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebButton.pkg
+Use SelectEquipo.wo
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
@@ -52,20 +54,36 @@ Object oZoomEquipo is a cWebView
         End_Object 
 
         Object oligaID is a cWebForm
-            Entry_Item liga.ID
+            Entry_Item equipo.LigaID
             Set piColumnSpan to 3
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "LigaID"
             Set pbPromptButton to True
+            WebRegisterPath ntNavigateForward oSelectLiga
 
 // ToDo: Fill in the from-child parent Select view object name for navigate forward
 //            WebRegisterPath ntNavigateForward oSelectView
 
-            Procedure OnPrompt
+            Procedure Prompt
                 Send NavigatePath
             End_Procedure
-        End_Object 
+            
+         End_Object 
+        
+         Object oSelectLigaBtn is a cWebButton
+
+            Set psCaption to "Seleccionar Liga"
+            Set piColumnSpan to 3
+
+            WebRegisterPath ntNavigateForward oSelectLiga
+
+            Procedure OnClick
+            Send NavigatePath
+    End_Procedure
+
+End_Object
+        
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
@@ -110,6 +128,22 @@ Object oZoomEquipo is a cWebView
             End_Procedure
 
         End_Object 
+        
+        Object oLigaEquiposBtn is a cWebMenuItem
+
+            Set psCaption to "Equipos Liga"
+
+            
+            Procedure OnClick
+                
+                
+
+                Send NavigateClose Self
+                
+            End_Procedure
+
+        End_Object
+        
     End_Object 
 
     Procedure SetActionButtons
