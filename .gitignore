@@ -1,0 +1,13 @@
+AppSrc/WebApp.cfg
+AppSrc/WebApp.x64.dep
+AppSrc/WebApp.x64.prn
+Data/entrenador.x64.cch
+Data/equipo.x64.cch
+Data/hijoentrenador.x64.cch
+Data/jugador.x64.cch
+Data/jugadorposicion.x64.cch
+Data/WebAppServerProps.x64.cch
+Data/WebAppUser.x64.cch
+IdeSrc/StudioMetaData64.mtd
+Programs/WebApp.dbg
+Programs/WebApp.exe
