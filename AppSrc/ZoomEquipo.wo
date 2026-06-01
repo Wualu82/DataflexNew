@@ -26,7 +26,8 @@ Object oZoomEquipo is a cWebView
     End_Object 
 
     Object oequipo_DD is a cequipoDataDictionary
-        Set DDO_Server To oliga_DD
+        Set DDO_Server to oliga_DD
+        Set Constrain_File to liga.File_Number
     End_Object 
 
     Set Main_DD To oequipo_DD
