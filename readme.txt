@@ -4,12 +4,11 @@ Cuando entramos en ZoomLiga desde Dashboard(Tile) la vista nos muestra la lista 
 
 - Navegación fromParent
 
-Cuando entras en SelectEquipo desde Dashboard aaprece le botón "new" pero si lo hacemos desde SelectLIga entonces no sales el dicho botón.
+Cuando entras en SelectEquipo desde Dashboard aparece le botón "new" pero si lo hacemos desde SelectLIga entonces no sales el dicho botón.
 
 - Navegación fromChild
 
-Si entras en SelectLiga desde el Dashboard aparece el botón de "new" pero si entras desde el ZoomEquipo entonces aparece no aparece el botón.
-
+Si entras en SelectLiga desde el Dashboard aparece el botón de "new", pero si entras en SelectEquipo y luego le das al boton detalle de uno de los equipos entras en el ZoomEquipo, una vez aqui usando el botón "seleccionar liga" abrimos SelectLiga y en este caso entonces no aparece el botón "new"
 
 Creado el botón "ver equipos" en ZoomLiga para ver los equipos de esa misma liga.
 
