@@ -7,6 +7,9 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebTabContainer.pkg
+Use cWebTabPage.pkg
+Use cWebButton.pkg //btn
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
@@ -14,7 +17,7 @@ Use centrenadorDataDictionary.dd
 
 Object oZoomEntrenador is a cWebView
     Set piColumnCount to 12
-    Set psCaption to "Entrenador"
+    Set psCaption to "Datos personales"
     Set peWebViewStyle to wvsDrilldown
     Set peViewType to vtZoom
     Set pbShowCaption to False
@@ -25,32 +28,24 @@ Object oZoomEntrenador is a cWebView
     End_Object 
 
     Object oequipo_DD is a cequipoDataDictionary
-        Set DDO_Server To oliga_DD
+        Set DDO_Server to oliga_DD
     End_Object 
 
     Object oentrenador_DD is a centrenadorDataDictionary
-        Set DDO_Server To oequipo_DD
+        Set DDO_Server to oequipo_DD
     End_Object 
 
-    Set Main_DD To oentrenador_DD
-    Set Server  To oentrenador_DD
+    Set Main_DD to oentrenador_DD
+    Set Server  to oentrenador_DD
 
 
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 12
         WebSetResponsive piColumnCount rmMobile to 4
-
-        Object oentrenadorID is a cWebForm
-            Entry_Item entrenador.ID
-            Set piColumnSpan to 2
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "ID"
-        End_Object 
-
+ 
         Object oentrenadorNombre is a cWebForm
             Entry_Item entrenador.Nombre
-            Set piColumnSpan to 12
+            Set piColumnSpan to 6
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Nombre"
@@ -58,26 +53,61 @@ Object oZoomEntrenador is a cWebView
 
         Object oentrenadorApellido is a cWebForm
             Entry_Item entrenador.Apellido
-            Set piColumnSpan to 12
-            Set piColumnIndex to 0
+            Set piColumnSpan to 6
+            Set piColumnIndex to 6
             Set peLabelPosition to lpTop
             Set psLabel to "Apellido"
         End_Object 
 
         Object oentrenadorNacionalidad is a cWebForm
             Entry_Item entrenador.Nacionalidad
-            Set piColumnSpan to 10
+            Set piColumnSpan to 6
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Nacionalidad"
         End_Object 
+        
 
-        Object oequipoID is a cWebForm
-            Entry_Item equipo.ID
-            Set piColumnSpan to 3
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "EquipoID"
+        Object oWebTabContainer is a cWebTabContainer
+            Set pbFillHeight to True
+            Set piColumnSpan to 12
+            Set pbShowLabel to False
+            
+            
+
+            Object oPage1 is a cWebTabPage
+                Set piColumnCount to 12
+                Set psCaption to "Equipo actual"
+                WebSetResponsive piColumnCount rmMobile to 4
+
+
+                Object oequipoNombre is a cWebForm
+                    Entry_Item equipo.Nombre
+                    Set piColumnSpan to 6
+                    Set piColumnIndex to 0
+                    Set peLabelPosition to lpTop
+                    Set psLabel to "Nombre equipo"
+                    Set pbPromptButton to True
+
+                    WebRegisterPath ntNavigateForward oSelectEquipo
+
+                    Procedure OnPrompt
+                        Send NavigatePath
+                    End_Procedure
+                End_Object 
+                
+                Object oSinEquipoBtn is a cWebButton //Relacion HARD
+                    Set psCaption to "Despedir el entrenador"
+                    Set piColumnSpan to 6
+                    Set piColumnIndex to 0
+ 
+                    Procedure OnClick 
+                        Forward Send OnClick
+                        //despejamos el campo
+                        Send Clear of oequipo_DD
+                    End_Procedure
+                End_Object
+            End_Object 
         End_Object 
     End_Object 
 

@@ -7,12 +7,15 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
-Use SelectEquipo.wo
-Use cequipoDataDictionary.dd
-Use cWebList.pkg
-Use cWebColumn.pkg
+Use cWebTabContainer.pkg
+Use cWebTabPage.pkg
+Use cWebButton.pkg 
+Use cWebList.pkg 
 
 Use cligaDataDictionary.dd
+Use cequipoDataDictionary.dd 
+
+Use SelectEquipo.wo 
 
 Object oZoomLiga is a cWebView
     Set piColumnCount to 12
@@ -26,29 +29,22 @@ Object oZoomLiga is a cWebView
     Object oliga_DD is a cligaDataDictionary
     End_Object 
     
-    Object oequipo_DD is a cequipoDataDictionary
-        Set DDO_Server to oliga_DD
+    Object oequipo_DD is a cequipoDataDictionary 
+        Set DDO_Server to oliga_DD 
+        Set Constrain_File to liga.File_Number 
     End_Object
 
-    Set Main_DD To oliga_DD
+    Set Main_DD to oliga_DD
     Set Server  to oliga_DD
-    
+
 
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 12
         WebSetResponsive piColumnCount rmMobile to 4
 
-        Object oligaID is a cWebForm
-            Entry_Item liga.ID
-            Set piColumnSpan to 2
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "ID"
-        End_Object 
-
         Object oligaNombre is a cWebForm
             Entry_Item liga.Nombre
-            Set piColumnSpan to 12
+            Set piColumnSpan to 6
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Nombre"
@@ -56,48 +52,68 @@ Object oZoomLiga is a cWebView
 
         Object oligaPais is a cWebForm
             Entry_Item liga.Pais
-            Set piColumnSpan to 10
-            Set piColumnIndex to 0
+            Set piColumnSpan to 6
+            Set piColumnIndex to 6
             Set peLabelPosition to lpTop
             Set psLabel to "Pais"
         End_Object 
 
-        Object oligaEquipos is a cWebForm
-            Entry_Item liga.Equipos
-            Set piColumnSpan to 2
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Equipos"
-        End_Object 
-
-        Object oligaEquiposMax is a cWebForm
-            Entry_Item liga.EquiposMax
-            Set piColumnSpan to 2
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "EquiposMax"
-        End_Object 
-        
-        Object oEquiposList is a cWebList
+        Object oWebTabContainer is a cWebTabContainer
+            Set pbFillHeight to True
             Set piColumnSpan to 12
-            Set psCaption to "Equipos de la liga"
-            Set pbShowHeader to True
-            Set Server to oequipo_DD
-            
+            Set pbShowLabel to False
 
-            Object oequipoID is a cWebColumn
-                Entry_Item equipo.ID
-                Set psCaption to "ID"
-                Set piWidth to 100
-            End_Object
+            Object oPage1 is a cWebTabPage
+                Set piColumnCount to 12
+                Set psCaption to "Equipos"
+                WebSetResponsive piColumnCount rmMobile to 4
 
-            Object oequipoNombre is a cWebColumn
-                Entry_Item equipo.Nombre
-                Set psCaption to "Nombre"
-                Set piWidth to 400
-            End_Object
-      End_Object
-        
+                Object oligaEquipos is a cWebForm
+                    Entry_Item liga.Equipos
+                    Set piColumnSpan to 6
+                    Set piColumnIndex to 0
+                    Set peLabelPosition to lpTop
+                    Set psLabel to "Equipos actuales"
+                    Set peAlign to alignLeft
+                End_Object 
+
+                Object oliga_EquiposMax is a cWebForm
+                    Entry_Item liga.EquiposMax
+                    Set Server to oliga_DD
+                    Set piColumnSpan to 6
+                    Set psLabel to "Máximo de equipos permitidos"
+                    Set peLabelPosition to lpTop
+                    Set piColumnIndex to 6
+                    Set peAlign to alignLeft
+                End_Object
+                
+                                
+                Object oEquiposLista is a cWebList 
+                    Set Server to oequipo_DD
+                    Set piColumnSpan to 6
+                    Set piColumnIndex to 0
+                                   
+                    Object oequipoNombre is a cWebColumn
+                        Entry_Item equipo.Nombre
+                        Set psCSSClass to "LabelCaption"
+                        Set psCaption to "Listado de equipos"
+                    End_Object 
+                End_Object
+                
+                Object oVerEquiposBtn is a cWebButton 
+                    Set psCaption to "Ver equipos en detalle"
+                    Set piColumnSpan to 3
+                    Set piColumnIndex to 0
+                    
+                    WebRegisterPath ntNavigateForward oSelectEquipo
+                    
+                    Procedure OnClick 
+                        Send NavigatePath
+                    End_Procedure
+                    
+                End_Object
+            End_Object 
+        End_Object 
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
@@ -142,23 +158,6 @@ Object oZoomLiga is a cWebView
             End_Procedure
 
         End_Object 
-        
-        Object oEquiposLigaBtn is a cWebMenuItem
-            Set psCaption to "Ver Equipos"
-            Set psCSSClass to "WebIcon_Group"
-    
-            WebRegisterPath ntNavigateForwardCustom oSelectEquipo
-
-            Procedure OnClick
-                Send NavigatePath
-            End_Procedure
-            
-            Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
-                Move nfFromParent to NavigateData.eNavigateType
-            End_Procedure
-
-End_Object
-        
     End_Object 
 
     Procedure SetActionButtons
@@ -197,10 +196,8 @@ End_Object
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
-        Integer iLigaID
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
-                WebSet pbRender of oEquiposList to False
                 // If from main, this is a propbably a main file Select to Zoom.
                 Case Break
 
@@ -213,15 +210,11 @@ End_Object
                 Case Break
 
             Case Else // must be nfUndefined
-                WebSet pbRender of oEquiposList to True
+
         Case End
-                
-        Get Field_Current_Value of oliga_DD Field liga.ID to iLigaID
-        Move iLigaID to equipo.LigaID
-        Send Find of oequipo_DD FIRST_RECORD 2
-        Send Refresh of oEquiposList True
+
         Send SetActionButtons
+
     End_Procedure
-    
 
 End_Object 

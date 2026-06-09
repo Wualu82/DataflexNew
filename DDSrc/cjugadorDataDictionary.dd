@@ -1,9 +1,14 @@
-﻿Use DataDict.pkg
+﻿﻿Use DataDict.pkg
 
 Open jugador
 Open hijojugador
 Open jugadorposicion
 Open equipo
+
+Object oNacionalidadValidacion is a CodeValidationTable 
+    Set Type_Value to "NACIONALIDAD"
+    
+End_Object
 
 Class cjugadorDataDictionary is a DataDictionary
     
@@ -15,12 +20,20 @@ Class cjugadorDataDictionary is a DataDictionary
 
         Set Add_Client_File to hijojugador.File_Number
         Set Add_Client_File to jugadorposicion.File_Number
+        
+        Set ParentNullAllowed equipo.File_Number to True 
 
         Set Foreign_Field_Option DD_KEYFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
         Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+        
+        
+        Set Field_Value_Table Field jugador.Nacionalidad to oNacionalidadValidacion
 
     End_Procedure
+    
+
+
 
 End_Class

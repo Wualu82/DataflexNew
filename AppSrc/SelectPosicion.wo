@@ -11,9 +11,10 @@ Use cWebColumn.pkg
 Use ZoomPosicion.wo
 
 Use cposicionDataDictionary.dd
+Use cWebLabel.pkg
 
 Object oSelectPosicion is a cWebView
-    Set psCaption to "Posiciones"
+    Set psCaption to "Posicion"
     Set peWebViewStyle to wvsDrilldown
     Set peViewType to vtSelect
     Set piColumnCount to 12
@@ -23,8 +24,14 @@ Object oSelectPosicion is a cWebView
     Object oposicion_DD is a cposicionDataDictionary
     End_Object 
 
-    Set Main_DD To oposicion_DD
-    Set Server  To oposicion_DD
+    Set Main_DD to oposicion_DD
+    Set Server  to oposicion_DD
+
+    Object oEtiquetaPosicion is a cWebLabel
+        Set psCaption to "Posición jugador"
+        Set piColumnSpan to 5
+        Set psCSSClass to "LabelCaption"
+    End_Object
 
 
     Object oList is a cWebList
@@ -35,16 +42,11 @@ Object oSelectPosicion is a cWebView
         Set pbShowHeader to False
         Set piSortColumn to 0
 
-        Object oposicionID is a cWebColumn
-            Entry_Item posicion.ID
-            Set psCaption to "posicion.ID"
-            Set piWidth to 124
-        End_Object 
-
         Object oposicionNombre is a cWebColumn
             Entry_Item posicion.Nombre
             Set psCaption to "posicion.Nombre"
-            Set piWidth to 621
+            Set piWidth to 500
+            Set psCSSClass to "RowCaption"
         End_Object 
 
         Object oDetailButton is a cWebColumnButton

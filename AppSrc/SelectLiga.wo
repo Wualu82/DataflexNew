@@ -9,12 +9,12 @@ Use cWebMenuItem.pkg
 Use cWebColumnButton.pkg
 Use cWebColumn.pkg
 Use ZoomLiga.wo
-Use SelectEquipo.wo
 
 Use cligaDataDictionary.dd
+Use cWebLabel.pkg
 
 Object oSelectLiga is a cWebView
-    Set psCaption to "Ligas"
+    Set psCaption to "Liga"
     Set peWebViewStyle to wvsDrilldown
     Set peViewType to vtSelect
     Set piColumnCount to 12
@@ -24,8 +24,20 @@ Object oSelectLiga is a cWebView
     Object oliga_DD is a cligaDataDictionary
     End_Object 
 
-    Set Main_DD To oliga_DD
-    Set Server  To oliga_DD
+    Set Main_DD to oliga_DD
+    Set Server  to oliga_DD
+
+    Object oEtiquetaCompeticion is a cWebLabel
+        Set psCaption to "Competición"
+        Set piColumnSpan to 7
+        Set psCSSClass to "LabelCaption"
+    End_Object
+
+    Object oEtiquetaPais is a cWebLabel
+        Set psCaption to "País"
+        Set piColumnIndex to 7
+        Set psCSSClass to "LabelCaption"
+    End_Object
 
 
     Object oList is a cWebList
@@ -36,42 +48,26 @@ Object oSelectLiga is a cWebView
         Set pbShowHeader to False
         Set piSortColumn to 0
 
-        Object oligaID is a cWebColumn
-            Entry_Item liga.ID
-            Set psCaption to "liga.ID"
-            Set piWidth to 124
-        End_Object 
-
         Object oligaNombre is a cWebColumn
             Entry_Item liga.Nombre
             Set psCaption to "liga.Nombre"
-            Set piWidth to 1243
+            Set piWidth to 621
+            Set psCSSClass to "RowCaption"
         End_Object 
 
         Object oligaPais is a cWebColumn
             Entry_Item liga.Pais
             Set psCaption to "liga.Pais"
-            Set piWidth to 621
-        End_Object 
-
-        Object oligaEquipos is a cWebColumn
-            Entry_Item liga.Equipos
-            Set psCaption to "liga.Equipos"
-            Set piWidth to 124
-        End_Object 
-
-        Object oligaEquiposMax is a cWebColumn
-            Entry_Item liga.EquiposMax
-            Set psCaption to "liga.EquiposMax"
-            Set piWidth to 124
+            Set piWidth to 355
+            Set psCSSClass to "RowCaption"
         End_Object 
 
         Object oDetailButton is a cWebColumnButton
             Set psCaption to "btn"
-            Set piWidth to 45
+            Set piWidth to 66
             Set pbFixedWidth to True
             Set pbResizable to False
-            Set piListRowSpan to 1
+            Set piListRowSpan to 2
             Set psBtnCssClass to "WebButtonIcon WebIcon_Info"
             Set peAlign to alignRight
 
@@ -87,8 +83,17 @@ Object oSelectLiga is a cWebView
 
         End_Object 
 
+        Object oligaEquipos is a cWebColumn
+            Entry_Item liga.Equipos
+            Set psCaption to "liga.Equipos"
+            Set piWidth to 100
+            Set pbNewLine to True
+            Set psCSSClass to "RowDetail"
+            Set peAlign to alignLeft
+        End_Object 
+
 // ToDo: Fill in the from-parent child Select view object name for navigate forward
-          WebRegisterPath ntNavigateForward oSelectEquipo
+//        WebRegisterPath ntNavigateForward oSelectView
 
         Procedure OnRowClick String sRowId
             tWebNavigateData NavigateData
@@ -96,8 +101,8 @@ Object oSelectLiga is a cWebView
 
             Case Begin
                 Case (NavigateData.eNavigateType = nfFromParent)
-                Send NavigatePath
-            Send NavigatePath
+// ToDo: Fill in the from-parent child Select view object name for navigate forward
+Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not yet defined"
 //                    Send NavigateForward of oSelectView Self
                     Case Break
 
@@ -111,7 +116,7 @@ Object oSelectLiga is a cWebView
 
                 Case Else // must be nfUndefined
 // ToDo: Fill in the from-parent child Select view object name for navigate forward
-                Send NavigatePath
+Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not yet defined"
 //                    Send NavigateForward of oSelectView Self
 
             Case End
@@ -162,7 +167,6 @@ Object oSelectLiga is a cWebView
                 Case Break
 
             Case (NavigateData.eNavigateType = nfFromChild)
-                WebSet pbRender of oNewButton to False
                 // If from child, this is a probably a parent lookup from a Zoom
                 Case Break
 

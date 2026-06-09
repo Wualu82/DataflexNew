@@ -13,9 +13,10 @@ Use ZoomJugador.wo
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use cjugadorDataDictionary.dd
+Use cWebLabel.pkg
 
 Object oSelectJugador is a cWebView
-    Set psCaption to "Jugadores"
+    Set psCaption to "Jugador"
     Set peWebViewStyle to wvsDrilldown
     Set peViewType to vtSelect
     Set piColumnCount to 12
@@ -26,15 +27,28 @@ Object oSelectJugador is a cWebView
     End_Object 
 
     Object oequipo_DD is a cequipoDataDictionary
-        Set DDO_Server To oliga_DD
+        Set DDO_Server to oliga_DD
     End_Object 
 
     Object ojugador_DD is a cjugadorDataDictionary
-        Set DDO_Server To oequipo_DD
+        Set DDO_Server to oequipo_DD
     End_Object 
 
-    Set Main_DD To ojugador_DD
-    Set Server  To ojugador_DD
+    Set Main_DD to ojugador_DD
+    Set Server  to ojugador_DD
+
+    Object oEtiquetaNombre is a cWebLabel
+        Set psCaption to "Nombre"
+        Set piColumnSpan to 6
+        Set psCSSClass to "LabelCaption"
+    End_Object
+
+    Object oEtiquetaApellido is a cWebLabel
+        Set psCaption to "Apellido"
+        Set piColumnIndex to 6
+        Set piColumnSpan to 6
+        Set psCSSClass to "LabelCaption"
+    End_Object
 
 
     Object oList is a cWebList
@@ -45,42 +59,26 @@ Object oSelectJugador is a cWebView
         Set pbShowHeader to False
         Set piSortColumn to 0
 
-        Object ojugadorID is a cWebColumn
-            Entry_Item jugador.ID
-            Set psCaption to "jugador.ID"
-            Set piWidth to 124
-        End_Object 
-
         Object ojugadorNombre is a cWebColumn
             Entry_Item jugador.Nombre
             Set psCaption to "jugador.Nombre"
-            Set piWidth to 745
+            Set piWidth to 525
+            Set psCSSClass to "RowCaption"
         End_Object 
 
         Object ojugadorApellido is a cWebColumn
             Entry_Item jugador.Apellido
             Set psCaption to "jugador.Apellido"
-            Set piWidth to 745
-        End_Object 
-
-        Object ojugadorNacionalidad is a cWebColumn
-            Entry_Item jugador.Nacionalidad
-            Set psCaption to "jugador.Nacionalidad"
-            Set piWidth to 621
-        End_Object 
-
-        Object oequipoID is a cWebColumn
-            Entry_Item equipo.ID
-            Set psCaption to "jugador.EquipoID"
-            Set piWidth to 124
+            Set piWidth to 470
+            Set psCSSClass to "RowCaption"
         End_Object 
 
         Object oDetailButton is a cWebColumnButton
             Set psCaption to "btn"
-            Set piWidth to 45
+            Set piWidth to 27
             Set pbFixedWidth to True
             Set pbResizable to False
-            Set piListRowSpan to 1
+            Set piListRowSpan to 2
             Set psBtnCssClass to "WebButtonIcon WebIcon_Info"
             Set peAlign to alignRight
 
@@ -94,6 +92,14 @@ Object oSelectJugador is a cWebView
                 Move True to NavigateData.bReadOnly
             End_Procedure
 
+        End_Object 
+
+        Object ojugadorNacionalidad is a cWebColumn
+            Entry_Item jugador.Nacionalidad
+            Set psCaption to "jugador.Nacionalidad"
+            Set piWidth to 500
+            Set pbNewLine to True
+            Set psCSSClass to "RowDetail"
         End_Object 
 
 // ToDo: Fill in the from-parent child Select view object name for navigate forward
