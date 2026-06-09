@@ -5,7 +5,7 @@
 SUB Session_OnStart
     WebAppServerSession.PageScopedSession=True
     WebAppServerSession.Initialize("FutbolWebApp")
-    Session.Timeout=1
+    Session.Timeout=0
 
 END SUB
 </SCRIPT>
